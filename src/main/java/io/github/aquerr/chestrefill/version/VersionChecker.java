@@ -24,31 +24,32 @@ public class VersionChecker
 
     public static boolean isLatest(String version)
     {
-        String latest = "https://ore.spongepowered.org/api/v1/projects/chestrefill/versions";
-        String currentTag = "https://ore.spongepowered.org/api/v1/projects/chestrefill/versions/" + version;
-
-        String latestJsonData = sendRequest(latest);
-        String currentJsonData = sendRequest(currentTag);
-
-        if (latestJsonData != null && currentJsonData != null)
-        {
-            JsonParser parser = new JsonParser();
-            JsonElement latestJsonElement = parser.parse(latestJsonData);
-            JsonElement currentJsonElement = parser.parse(currentJsonData);
-
-            if (latestJsonElement.isJsonArray())
-            {
-                JsonArray latestJsonArray = latestJsonElement.getAsJsonArray();
-                JsonElement latestRelease = latestJsonArray.get(0);
-
-                Date latestReleaseDate = Date.from(Instant.parse(latestRelease.getAsJsonObject().get("published_at").getAsString()));
-                Date currentReleaseDate = Date.from(Instant.parse(currentJsonElement.getAsJsonObject().get("published_at").getAsString()));
-
-                if (currentReleaseDate.before(latestReleaseDate)) return false;
-            }
-        }
-
         return true;
+//        String latest = "https://ore.spongepowered.org/api/v1/projects/chestrefill/versions";
+//        String currentTag = "https://ore.spongepowered.org/api/v1/projects/chestrefill/versions/" + version;
+//
+//        String latestJsonData = sendRequest(latest);
+//        String currentJsonData = sendRequest(currentTag);
+//
+//        if (latestJsonData != null && currentJsonData != null)
+//        {
+//            JsonParser parser = new JsonParser();
+//            JsonElement latestJsonElement = parser.parse(latestJsonData);
+//            JsonElement currentJsonElement = parser.parse(currentJsonData);
+//
+//            if (latestJsonElement.isJsonArray())
+//            {
+//                JsonArray latestJsonArray = latestJsonElement.getAsJsonArray();
+//                JsonElement latestRelease = latestJsonArray.get(0);
+//
+//                Date latestReleaseDate = Date.from(Instant.parse(latestRelease.getAsJsonObject().get("published_at").getAsString()));
+//                Date currentReleaseDate = Date.from(Instant.parse(currentJsonElement.getAsJsonObject().get("published_at").getAsString()));
+//
+//                if (currentReleaseDate.before(latestReleaseDate)) return false;
+//            }
+//        }
+//
+//        return true;
     }
 
     private static String sendRequest(String request)
